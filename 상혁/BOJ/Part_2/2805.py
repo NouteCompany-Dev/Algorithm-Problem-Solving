@@ -9,7 +9,7 @@ def binary():
         temp += (item - mid) if item > mid else 0
     if temp >= m:
       left = mid + 1
-      if mid > ans: ans = mid
+      ans = mid
     else:
       right = mid
       
