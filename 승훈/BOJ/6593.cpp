@@ -61,20 +61,23 @@ int main() {
             que.pop();
             
             for(int i = 0; i < 6; i++) {
-                if(q1 + dx[i] >= 0 && q2 + dy[i] >= 0 && q3 + dz[i] >= 0 && q1 + dx[i] < l && q2 + dy[i] < r && q3 + dz[i] < c) {
-                    if(chk[q1 + dx[i]][q2 + dy[i]][q3 + dz[i]] && !visited[q1 + dx[i]][q2 + dy[i]][q3 + dz[i]]) {
-                        cnt[q1 + dx[i]][q2 + dy[i]][q3 + dz[i]] = cnt[q1][q2][q3] + 1;
-                        visited[q1 + dx[i]][q2 + dy[i]][q3 + dz[i]] = true;
+                int nq1 = q1 + dx[i];
+                int nq2 = q2 + dy[i];
+                int nq3 = q3 + dz[i];
+                
+                if(nq1 >= 0 && nq2 >= 0 && nq3 >= 0 && nq1 < l && nq2 < r && nq3 < c) {
+                        cnt[nq1][nq2][nq3] = cnt[q1][q2][q3] + 1;
+                        visited[nq1][nq2][nq3] = true;
                         
-                        if(arr[q1 + dx[i]][q2 + dy[i]][q3 + dz[i]] == 'E') {
+                        if(arr[nq1][nq2][nq3] == 'E') {
                             res = true;
-                            cout << "Escaped in " << cnt[q1 + dx[i]][q2 + dy[i]][q3 + dz[i]] << " minute(s)." << endl;
+                            cout << "Escaped in " << cnt[nq1][nq2][nq3] << " minute(s)." << endl;
                             
                             break;
                         }
                         
                         else {
-                            que.push({ q1 + dx[i], { q2 + dy[i], q3 + dz[i] }});
+                            que.push({ nq1, { nq2, nq3 }});
                         }
                     }
                 }
