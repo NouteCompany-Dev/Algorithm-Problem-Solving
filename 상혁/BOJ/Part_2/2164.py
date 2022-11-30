@@ -11,7 +11,6 @@ while queue:
   if not queue: 
     ans = num
     break
-  temp = queue.popleft()
-  queue.append(temp)
+  queue.rotate(-1)
 
 print(ans)
